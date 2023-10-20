@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5571930500650056236}
   - component: {fileID: 1689901349680537689}
   - component: {fileID: 6068043332228911295}
+  - component: {fileID: -3069368017229208880}
   m_Layer: 7
   m_Name: EnemyBus
   m_TagString: Untagged
@@ -97,7 +98,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 810782294924945675}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -112,7 +113,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &1689901349680537689
 BoxCollider2D:
@@ -173,3 +174,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_rigidbody: {fileID: 5571930500650056236}
   enemySpeed: 2
+--- !u!114 &-3069368017229208880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810782294924945675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da42d5023393450b82966e0e1161c82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 2

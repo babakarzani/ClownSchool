@@ -27,7 +27,7 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if(Vector2.Distance(target.position, transform.position)<=0.1f)
         {
-            
+            targetIndex++;
 
             if (targetIndex > LevelManager.main.busPath.Length)
             {
@@ -37,7 +37,7 @@ public class NewBehaviourScript : MonoBehaviour
             }
             else
             {
-                targetIndex++;
+                
                 target = LevelManager.main.busPath[targetIndex];
               
             }

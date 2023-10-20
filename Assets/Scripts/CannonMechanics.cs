@@ -7,25 +7,51 @@ public class CannonMechanics : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject spriteToRotate;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private LayerMask enemyMask;
+    [SerializeField] private Transform firingPoint;
 
     [Header("Attributes")]
     [SerializeField] private float towerRange = 2f;
     [SerializeField] private float towerRotationSpeed = 300f;
-    [SerializeField] private LayerMask enemyMask;
+    
+    [SerializeField] private float fireInterval = 2f;
 
+
+    private float Intervaltimer;
     private Transform enemyLocation;
+
+    private void Start()
+    {
+        Intervaltimer = fireInterval;
+    }
 
     private void Update()
     {
         if(enemyLocation==null)
         {
             FindEnemy();
+            return;
+        }
+        
+
+        RotateTowardsTarget();
+
+        if (!EnemyOutofRange()) //checks if enemy is out of range
+        {
+            enemyLocation = null;
+            
         }
         else
         {
-            RotateTowardsTarget();
-            EnemyOutofRange();
-        }    
+            Intervaltimer += Time.deltaTime;
+            if (Intervaltimer>=fireInterval)
+            {
+                ShootEnemy();
+                Intervaltimer = 0;
+            }
+        }
+           
         
     }
 
@@ -45,13 +71,21 @@ public class CannonMechanics : MonoBehaviour
         spriteToRotate.transform.rotation = Quaternion.RotateTowards(spriteToRotate.transform.rotation, enemyRotation, towerRotationSpeed*Time.deltaTime);
     }
 
-    private void EnemyOutofRange()
+    private bool EnemyOutofRange()
     {
         if (Vector2.Distance(enemyLocation.position, transform.position) > towerRange)
         {
-            enemyLocation = null;
+            return(false);
         }
+        return true;
 
+    }
+
+    private void ShootEnemy()
+    {
+        GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
+        BulletMechanics bulletScript = bulletObj.GetComponent<BulletMechanics>();
+        bulletScript.SetEnemyLocation(enemyLocation);
     }
 
     //just for us to see

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4956303978114800030}
   - component: {fileID: 6023263487105427764}
   - component: {fileID: 2238411966227642887}
+  - component: {fileID: -4719662056440477037}
   m_Layer: 7
   m_Name: EnemyClownCar
   m_TagString: Untagged
@@ -97,7 +98,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 1394049698733779308}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -112,7 +113,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!60 &6023263487105427764
 PolygonCollider2D:
@@ -177,3 +178,16 @@ MonoBehaviour:
   m_rigidbody: {fileID: 4956303978114800030}
   emenySpeed: 3
   initialWait: 3
+--- !u!114 &-4719662056440477037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394049698733779308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da42d5023393450b82966e0e1161c82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1

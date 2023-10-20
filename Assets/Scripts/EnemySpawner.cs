@@ -22,6 +22,9 @@ public class BusSpawner : MonoBehaviour
     //call level manager to say a car reached the hospital
     public static UnityEvent onCarReachingHospital = new UnityEvent();
 
+    //call level manager to say a car reached the hospital
+    public static UnityEvent onEnemyDestroyed = new UnityEvent();
+
     private int currentWave = 1;
     private float timeSinceLastSpawn;
     private int enemiesAlive;
@@ -34,6 +37,7 @@ public class BusSpawner : MonoBehaviour
         //Call journey from school to hostpital everytime Bus reaches school
         onBusReachingSchool.AddListener(startSchooltoHospital);
         onCarReachingHospital.AddListener(endGame);
+        onEnemyDestroyed.AddListener(DestroyEnemy);
     }
     private void Start()
     {
@@ -86,6 +90,12 @@ public class BusSpawner : MonoBehaviour
         enemiesAlive--;
         clownCarsLeft--;
     }
+
+
+    private void DestroyEnemy()
+    {
+        enemiesAlive--;
+    }    
 
     //ends current wave and calls the next one
     private void endWave()
