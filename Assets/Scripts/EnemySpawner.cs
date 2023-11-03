@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering.LookDev;
 
 public class BusSpawner : MonoBehaviour
 {
@@ -23,25 +24,39 @@ public class BusSpawner : MonoBehaviour
     public static UnityEvent onCarReachingHospital = new UnityEvent();
 
     //call level manager to say a car reached the hospital
-    public static UnityEvent onEnemyDestroyed = new UnityEvent();
+    public static UnityEvent onBusDestroyed = new UnityEvent();
 
+    //call level manager to say a clown car is destroyed
+    public static UnityEvent onClownCarDestroyed = new UnityEvent();
+
+    
+
+    //Enemy means Bus
     private int currentWave = 1;
     private float timeSinceLastSpawn;
     private int enemiesAlive;
     private int enemiesLeftToSpawn;
     private int clownCarsLeft;
-    private bool isSpawning = false;
+    public static bool isSpawning = false;
 
     private void Awake()
     {
-        //Call journey from school to hostpital everytime Bus reaches school
+        //Enemy bus movement calls this
         onBusReachingSchool.AddListener(startSchooltoHospital);
+        //Enemy clown car movement calls this
         onCarReachingHospital.AddListener(endGame);
-        onEnemyDestroyed.AddListener(DestroyEnemy);
+        //Enemy Health Function calls this
+        onBusDestroyed.AddListener(DestroyBus);
+        //clown car health function calls this
+        onClownCarDestroyed.AddListener(DestroyClownCar);
+
+        
+
     }
     private void Start()
     {
        StartCoroutine(startWave());
+        
     }
 
     private void Update()
@@ -64,7 +79,11 @@ public class BusSpawner : MonoBehaviour
 
     private IEnumerator startWave()
     {
+        
+
+
         yield return new WaitForSeconds(timeBetweenWaves);
+        UIMainMenu.mainMenu.CloseMenu();
         enemiesLeftToSpawn = numberOfEnemies[currentWave - 1];
         isSpawning = true;
     }
@@ -92,11 +111,17 @@ public class BusSpawner : MonoBehaviour
     }
 
 
-    private void DestroyEnemy()
+    private void DestroyBus()
     {
         enemiesAlive--;
-    }    
+    }
 
+    private void DestroyClownCar()
+
+    {
+        enemiesAlive--;
+        clownCarsLeft--;
+    }
     //ends current wave and calls the next one
     private void endWave()
     {
@@ -104,7 +129,11 @@ public class BusSpawner : MonoBehaviour
         isSpawning = false;
         currentWave++;
         if (currentWave <= 5)
+        {
+            UIMainMenu.mainMenu.OpenMenu();
             StartCoroutine(startWave());
+            
+        }
 
     }    
 

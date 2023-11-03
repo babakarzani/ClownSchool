@@ -28,7 +28,15 @@ public class BulletMechanics : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        other.gameObject.GetComponent<BusHealth>().TakeDamage(bulletPower);
-        Destroy(gameObject);
+        if (other.gameObject.CompareTag("Bus"))
+        {
+            other.gameObject.GetComponent<BusHealth>().TakeDamage(bulletPower);
+            Destroy(gameObject);
+        }
+        if (other.gameObject.CompareTag("Clown Car"))
+        {
+            other.gameObject.GetComponent<ClownCarHealth>().TakeDamage(bulletPower);
+            Destroy(gameObject);
+        }    
     }
 }

@@ -6,7 +6,7 @@ public class BuildManager : MonoBehaviour
 {
     public static BuildManager main;
     [Header("References")]
-    [SerializeField] private GameObject[] towerPrefabs;
+    [SerializeField] private ChooseTower[] towers;
 
     private int selectedTower = 0;
 
@@ -15,8 +15,14 @@ public class BuildManager : MonoBehaviour
         main = this;
     }
 
-    public GameObject GetSelectedTower()
+    public ChooseTower GetSelectedTower()
     {
-        return towerPrefabs[selectedTower];
+        return towers[selectedTower];
+    }
+
+    //Default selected tower is 0, i.e. cannon. UI will call this function
+    public void SetSelectedTower(int _selectedTower)
+    {
+        selectedTower = _selectedTower;
     }    
 }

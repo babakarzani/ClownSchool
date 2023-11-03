@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour
     public static LevelManager main;
 
     [Header("Attribitues")]
-    [SerializeField] public int InitialCurrency=700;
+    [SerializeField] public int currency=2899;
 
     // start point and path for enemy Bus
     public Transform BusstartPoint;
@@ -27,14 +27,14 @@ public class LevelManager : MonoBehaviour
 
     public void IncreaseCurrency(int _amount)
     {
-        InitialCurrency += _amount;
+        currency += _amount;
     }
 
     public bool SpendCurrency(int _amount)
     {
-        if(_amount<= InitialCurrency)
+        if(_amount<= currency)
         {
-            InitialCurrency -= _amount;
+            currency -= _amount;
 
             return true;
         }

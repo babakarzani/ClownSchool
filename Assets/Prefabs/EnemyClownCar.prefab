@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 4956303978114800030}
   - component: {fileID: 6023263487105427764}
   - component: {fileID: 2238411966227642887}
-  - component: {fileID: -4719662056440477037}
+  - component: {fileID: -3555103573435768897}
   m_Layer: 7
   m_Name: EnemyClownCar
-  m_TagString: Untagged
+  m_TagString: Clown Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_rigidbody: {fileID: 4956303978114800030}
   emenySpeed: 3
   initialWait: 3
---- !u!114 &-4719662056440477037
+--- !u!114 &-3555103573435768897
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,7 +187,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1394049698733779308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3da42d5023393450b82966e0e1161c82, type: 3}
+  m_Script: {fileID: 11500000, guid: f67ff7d3f2dc549e594d06f0b693dec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
+  worth: 400

@@ -15,7 +15,8 @@ public class BusHealth : MonoBehaviour
         health -= _damage;
         if(health<=0 && !isDestroyed)
         {
-            BusSpawner.onEnemyDestroyed.Invoke();
+            //call this even on Bus spawner
+            BusSpawner.onBusDestroyed.Invoke();
             isDestroyed = true;
             LevelManager.main.IncreaseCurrency(worth);
             Destroy(gameObject);

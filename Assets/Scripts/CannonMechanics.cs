@@ -62,6 +62,7 @@ public class CannonMechanics : MonoBehaviour
         {
             enemyLocation = hits[0].transform;
         }
+        
     }
 
     private void RotateTowardsTarget()
