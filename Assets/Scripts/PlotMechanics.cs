@@ -22,12 +22,14 @@ public class PlotMechanics : MonoBehaviour
     private void OnMouseEnter()
     {
         if (BusSpawner.isSpawning) return;
-        m_spriteRenderer.color = hoverColor;
+        if (tower != null) return;
+        if (LevelManager.main.currency > BuildManager.main.towers[0].cost)
+            m_spriteRenderer.color = hoverColor;
     }
 
     private void OnMouseExit()
     {
-        if (BusSpawner.isSpawning) return;
+        
         m_spriteRenderer.color = startColor;
     }
 
@@ -43,7 +45,7 @@ public class PlotMechanics : MonoBehaviour
         ChooseTower typeOfTowerToBuild = BuildManager.main.GetSelectedTower();
         if (typeOfTowerToBuild.cost > LevelManager.main.currency)
         {
-            Shopbehaviour.main.Announcments("You have no money, walrus face cheesburger eating clown!");
+            Shopbehaviour.main.Announcments("You have no money, broke-ass, cheap-face peasant!");
             return;
         }
         LevelManager.main.SpendCurrency(typeOfTowerToBuild.cost);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class Shopbehaviour : MonoBehaviour
@@ -8,6 +9,7 @@ public class Shopbehaviour : MonoBehaviour
     [Header("References")]
     [SerializeField] TextMeshProUGUI currency;
     [SerializeField] private TMP_Text announcementText;
+    
 
     public static Shopbehaviour main;
 
@@ -15,6 +17,7 @@ public class Shopbehaviour : MonoBehaviour
     {
         main = this;
     }
+    
 
     public void Announcments(string _announcment)
     {

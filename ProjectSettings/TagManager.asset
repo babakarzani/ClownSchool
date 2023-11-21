@@ -46,3 +46,6 @@ TagManager:
   - name: Tower
     uniqueID: 642728815
     locked: 0
+  - name: Tent and Hospital
+    uniqueID: 1512484753
+    locked: 0

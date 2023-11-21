@@ -6,7 +6,7 @@ public class BuildManager : MonoBehaviour
 {
     public static BuildManager main;
     [Header("References")]
-    [SerializeField] private ChooseTower[] towers;
+    [SerializeField] public ChooseTower[] towers;
 
     private int selectedTower = 0;
 

@@ -10,6 +10,7 @@ public class CannonMechanics : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private LayerMask enemyMask;
     [SerializeField] private Transform firingPoint;
+    [SerializeField] Animator cannonAnimator;
 
     [Header("Attributes")]
     [SerializeField] private float towerRange = 2f;
@@ -24,6 +25,7 @@ public class CannonMechanics : MonoBehaviour
     private void Start()
     {
         Intervaltimer = fireInterval;
+        cannonAnimator.SetBool("Shoot", false);
     }
 
     private void Update()
@@ -70,6 +72,8 @@ public class CannonMechanics : MonoBehaviour
         float angle = Mathf.Atan2(spriteToRotate.transform.position.y - enemyLocation.position.y,  spriteToRotate.transform.position.x - enemyLocation.position.x) * Mathf.Rad2Deg +90f;
         Quaternion enemyRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
         spriteToRotate.transform.rotation = Quaternion.RotateTowards(spriteToRotate.transform.rotation, enemyRotation, towerRotationSpeed*Time.deltaTime);
+        
+
     }
 
     private bool EnemyOutofRange()
@@ -87,6 +91,7 @@ public class CannonMechanics : MonoBehaviour
         GameObject bulletObj = Instantiate(bulletPrefab, firingPoint.position, Quaternion.identity);
         BulletMechanics bulletScript = bulletObj.GetComponent<BulletMechanics>();
         bulletScript.SetEnemyLocation(enemyLocation);
+        cannonAnimator.SetTrigger("ShootTrigger");
     }
 
     //just for us to see

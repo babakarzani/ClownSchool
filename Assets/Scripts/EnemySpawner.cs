@@ -100,7 +100,7 @@ public class BusSpawner : MonoBehaviour
         clownCarsLeft++;
         
         GameObject prefabToSpawn = clownCarPrefabs[0];
-        Instantiate(prefabToSpawn, LevelManager.main.schoolstartPoint.position, Quaternion.identity);
+        Instantiate(prefabToSpawn, LevelManager.main.schoolstartPoint.position, LevelManager.main.schoolstartPoint.rotation);
     }
     //for now endgame is a replacement for clowncar destroyed
     private void endGame()
