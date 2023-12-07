@@ -30,7 +30,8 @@ public class CannonMechanics : MonoBehaviour
 
     private void Update()
     {
-        if(enemyLocation==null)
+        Intervaltimer += Time.deltaTime;
+        if (enemyLocation==null)
         {
             FindEnemy();
             return;
@@ -38,7 +39,7 @@ public class CannonMechanics : MonoBehaviour
         
 
         RotateTowardsTarget();
-
+        
         if (!EnemyOutofRange()) //checks if enemy is out of range
         {
             enemyLocation = null;
@@ -46,7 +47,7 @@ public class CannonMechanics : MonoBehaviour
         }
         else
         {
-            Intervaltimer += Time.deltaTime;
+            //Intervaltimer += Time.deltaTime;
             if (Intervaltimer>=fireInterval)
             {
                 ShootEnemy();

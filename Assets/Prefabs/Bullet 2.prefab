@@ -163,4 +163,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ownRigidBody: {fileID: 6438164410498404846}
   bulletSpeed: 5
-  bulletPower: 1
+  bulletPower: 2

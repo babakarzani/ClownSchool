@@ -49,7 +49,7 @@ public class NewBehaviourScript : MonoBehaviour
     private void FixedUpdate()
     {
         direction = (target.position - transform.position).normalized;
-        m_rigidbody.velocity = direction*enemySpeed;
+        m_rigidbody.velocity = direction*Random.Range(enemySpeed-0.5f, enemySpeed+1f);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, target.rotation, 200*Time.deltaTime);
     }
     

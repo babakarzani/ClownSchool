@@ -36,7 +36,7 @@ public class EnemyClownCarMovement : MonoBehaviour
 
     private IEnumerator waitbeforeanything()
     {
-        yield return new WaitForSeconds(initialWait);
+        yield return new WaitForSeconds(Random.Range(0.5f,initialWait));
         
         waited = true;
         this.gameObject.GetComponent<SpriteRenderer>().enabled = true;
@@ -68,7 +68,7 @@ public class EnemyClownCarMovement : MonoBehaviour
         if (waited)
         {
             direction = (target.position - transform.position).normalized;
-            m_rigidbody.velocity = direction * emenySpeed;
+            m_rigidbody.velocity = direction * Random.Range(emenySpeed - 0.5f, emenySpeed + 0.5f);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, target.rotation, 200 * Time.deltaTime);
         }
     }

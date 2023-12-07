@@ -48,10 +48,15 @@ public class PlotMechanics : MonoBehaviour
             Shopbehaviour.main.Announcments("You have no money, broke-ass, cheap-face peasant!");
             return;
         }
+        //the act of purchase
         LevelManager.main.SpendCurrency(typeOfTowerToBuild.cost);
         tower = Instantiate(typeOfTowerToBuild.prefab, transform.position, Quaternion.identity);
         Shopbehaviour.main.Announcments("");
-
+        //update the UI how many towers are left
+        
+         UIMainMenu.mainMenu.UpdateUIAfterPurchase(typeOfTowerToBuild.name);
+            
+        
     }
 
     

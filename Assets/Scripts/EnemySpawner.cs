@@ -10,6 +10,8 @@ public class BusSpawner : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject[] busPrefabs;
     [SerializeField] private GameObject[] clownCarPrefabs;
+    [SerializeField] private GameObject losePanel;
+    [SerializeField] private GameObject winPanel;
 
     [Header("Attributes")]
     [SerializeField] private int[] numberOfEnemies= new int[5];
@@ -41,8 +43,14 @@ public class BusSpawner : MonoBehaviour
 
     private void Awake()
     {
-        //Enemy bus movement calls this
-        onBusReachingSchool.AddListener(startSchooltoHospital);
+        currentWave = 1;
+        timeSinceLastSpawn = 0;
+        enemiesAlive = 0;
+        enemiesLeftToSpawn =0;
+        clownCarsLeft=0;
+        isSpawning = false;
+    //Enemy bus movement calls this
+    onBusReachingSchool.AddListener(startSchooltoHospital);
         //Enemy clown car movement calls this
         onCarReachingHospital.AddListener(endGame);
         //Enemy Health Function calls this
@@ -102,12 +110,15 @@ public class BusSpawner : MonoBehaviour
         GameObject prefabToSpawn = clownCarPrefabs[0];
         Instantiate(prefabToSpawn, LevelManager.main.schoolstartPoint.position, LevelManager.main.schoolstartPoint.rotation);
     }
-    //for now endgame is a replacement for clowncar destroyed
+    
     private void endGame()
     {
-        //for now
+        
         enemiesAlive--;
         clownCarsLeft--;
+        Cursor.SetCursor(default, Vector2.zero, CursorMode.ForceSoftware);
+        losePanel.SetActive(true);
+        StartCoroutine(CanvasLossGame());
     }
 
 
@@ -132,9 +143,24 @@ public class BusSpawner : MonoBehaviour
         {
             UIMainMenu.mainMenu.OpenMenu();
             StartCoroutine(startWave());
-            
-        }
 
-    }    
+        }
+        else
+            WinGame();
+
+    }
+
+    IEnumerator CanvasLossGame()
+    {
+        yield return new WaitForSeconds(1f);
+        Time.timeScale = 0;
+    }
+
+    private void WinGame()
+    {
+        Cursor.SetCursor(default, Vector2.zero, CursorMode.ForceSoftware);
+        winPanel.SetActive(true);
+        StartCoroutine(CanvasLossGame());
+    }
 
 }

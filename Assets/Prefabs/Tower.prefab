@@ -84,9 +84,9 @@ MonoBehaviour:
     m_Bits: 128
   firingPoint: {fileID: 7613910625321820638}
   cannonAnimator: {fileID: 1653487289254011280}
-  towerRange: 2.7
-  towerRotationSpeed: 200
-  fireInterval: 1.5
+  towerRange: 2.9
+  towerRotationSpeed: 240
+  fireInterval: 2.2
 --- !u!95 &1653487289254011280
 Animator:
   serializedVersion: 5

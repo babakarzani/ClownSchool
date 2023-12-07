@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_rigidbody: {fileID: 5571930500650056236}
-  enemySpeed: 2
+  enemySpeed: 2.1
 --- !u!114 &-3069368017229208880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  worth: 700
+  worth: 698
 --- !u!95 &4280201312062897868
 Animator:
   serializedVersion: 5
