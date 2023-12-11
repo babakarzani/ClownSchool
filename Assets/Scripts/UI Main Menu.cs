@@ -16,9 +16,14 @@ public class UIMainMenu : MonoBehaviour
     [SerializeField] public int cannonNumbers;
     [SerializeField] public TextMeshProUGUI catapultNumberstxt;
     [SerializeField] public int catapultNumbers;
+    [SerializeField] TextMeshProUGUI timerTxt;
+    [SerializeField] Animator waveAnimator;
 
 
     public static UIMainMenu mainMenu;
+    float timeLeft;
+    int timeInSecond;
+    int waveNumber;
   
 
     private void Awake()
@@ -27,6 +32,7 @@ public class UIMainMenu : MonoBehaviour
     }
     private void Start()
     {
+        waveNumber = 1;
         catapultNumberstxt.text = catapultNumbers.ToString() + "x";
         cannonNumberstxt.text = cannonNumbers.ToString() + "x";
         if (LevelManager.main.currency < BuildManager.main.towers[0].cost)
@@ -43,12 +49,27 @@ public class UIMainMenu : MonoBehaviour
             catapultButton.interactable = false;
         }
         else catapultButton.interactable = true;
+        timerTxt.gameObject.SetActive(true);
+        timeLeft = BusSpawner.mainMenu.timeBetweenWaves+1;
     }
 
-
+    private void Update()
+    {
+        if (timeLeft <= 1)
+            return;
+        if (timeLeft < 6)
+            timerTxt.color = Color.red;
+        timeLeft -= Time.deltaTime;
+        timeInSecond = Mathf.FloorToInt(timeLeft % 60);
+        timerTxt.text = string.Format("{00:00}", timeInSecond);
+    }
     //the two following functions is to slide down and up the UI menu
     public void OpenMenu()
     {
+        waveNumber++;
+        waveAnimator.SetInteger("WaveNmb", waveNumber);
+        timeLeft = BusSpawner.mainMenu.timeBetweenWaves + 1;
+        timerTxt.color = Color.white;
         if (LevelManager.main.currency < BuildManager.main.towers[0].cost || cannonNumbers <= 0)
         {
             cannonButton.interactable = false;
@@ -64,6 +85,7 @@ public class UIMainMenu : MonoBehaviour
         }
         else catapultButton.interactable = true;
         Shopbehaviour.main.Announcments("");
+        timerTxt.gameObject.SetActive(true);
 
         mainMenuAnimator.SetBool("IsOpen", true);
         
@@ -75,6 +97,8 @@ public class UIMainMenu : MonoBehaviour
         Cursor.SetCursor(default, Vector2.zero,CursorMode.ForceSoftware);
 
         mainMenuAnimator.SetBool("IsOpen", false);
+        timerTxt.gameObject.SetActive(false);
+
 
     }
 
@@ -121,4 +145,6 @@ public class UIMainMenu : MonoBehaviour
         }
 
     }
+
+    
 }

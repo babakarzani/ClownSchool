@@ -16,7 +16,7 @@ public class BusSpawner : MonoBehaviour
     [Header("Attributes")]
     [SerializeField] private int[] numberOfEnemies= new int[5];
     [SerializeField] private float timeBetweenEnemies = 2f;
-    [SerializeField] private float timeBetweenWaves = 5f;
+    [SerializeField] public float timeBetweenWaves = 5f;
 
     //call level manager to say a bus reached the school
     [Header("Events")]
@@ -31,7 +31,7 @@ public class BusSpawner : MonoBehaviour
     //call level manager to say a clown car is destroyed
     public static UnityEvent onClownCarDestroyed = new UnityEvent();
 
-    
+    public static BusSpawner mainMenu;
 
     //Enemy means Bus
     private int currentWave = 1;
@@ -43,6 +43,7 @@ public class BusSpawner : MonoBehaviour
 
     private void Awake()
     {
+        mainMenu = this;
         currentWave = 1;
         timeSinceLastSpawn = 0;
         enemiesAlive = 0;
